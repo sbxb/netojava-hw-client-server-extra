@@ -14,11 +14,12 @@ public class Server {
             while (true) {
                 try (Socket clientSocket = serverSocket.accept();
                      PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+                     BufferedReader in =
+                             new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
 
                     String inMessage;
                     String outMessage;
-                    String[] name = {""};
+                    String[] name = {""}; // to avoid using global var or StringBuilder object
                     while ((inMessage = in.readLine()) != null) {
                         outMessage = dialogue(inMessage, name);
                         if (outMessage == null) {
@@ -28,7 +29,8 @@ public class Server {
                         out.println(outMessage);
                     }
                 } catch (IOException e) {
-                    System.out.println("ERROR Server failed to process client connection: " + e.getMessage());
+                    System.out.println("ERROR Server failed to process client connection: "
+                            + e.getMessage());
                 }
             }
         } catch (IOException | IllegalArgumentException e) {
@@ -45,7 +47,8 @@ public class Server {
         } else if (m.equals("yes")) {
             return "Welcome to the kids area, " + name[0] + "! Let's play!";
         } else if (m.equals("no")) {
-            return "Welcome to the adult zone, " + name[0] + "! Have a good rest, or a good working day!";
+            return "Welcome to the adult zone, " + name[0] + "! Have a good rest, or a good " +
+                    "working day!";
         } else if (m.startsWith("bye")) {
             return null;
         } else {

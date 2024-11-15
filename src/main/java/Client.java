@@ -12,7 +12,8 @@ public class Client {
     public static void main(String[] args) {
         try (Socket clientSocket = new Socket("netology.homework", Server.SERVER_PORT);
              PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+             BufferedReader reader =
+                     new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
 
             writer.println("Hello, Server");
 
