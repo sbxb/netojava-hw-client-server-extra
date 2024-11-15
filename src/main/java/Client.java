@@ -30,7 +30,7 @@ public class Client {
                 }
                 writer.println(outMessage);
             }
-        } catch(IOException | IllegalArgumentException e) {
+        } catch (IOException | IllegalArgumentException e) {
             System.out.println("ERROR Client failure: " + e.getMessage());
             System.exit(1);
         }
